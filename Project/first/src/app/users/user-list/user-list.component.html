@@ -15,8 +15,8 @@
                         <td >{{user.name}}</td>
                         <td>{{user.address}}</td>
                         <td>
-                            <button class="btn btn-warning mr-3" (click)="openModalEdit(edit)">Edit</button>
-                            <button class="btn btn-danger">Delete</button>
+                            <button class="btn btn-warning mr-3" (click)="openModalEdit(edit,user)">Edit</button>
+                            <button class="btn btn-danger " (click)="openModalDelete(delete,user._id)">Delete</button>
                         </td>
                     </tr>
                 </tbody>
@@ -27,7 +27,7 @@
 
 <ng-template #add>
     <div class="modal-header">
-      <h4 class="modal-title pull-left">Modal</h4>
+      <h4 class="modal-title pull-left">Add</h4>
       <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -42,14 +42,14 @@
             <label for="address">Address</label>
             <input type="text" class="form-control" name="address" [(ngModel)]="user.address">
           </div>
-          <button class="btn btn-primary" type="submit" (click)="onSave()">Save</button>
+          <button class="btn btn-primary" type="submit" (click)="onSave()">Save </button>
       </form>
     </div>
   </ng-template>
 
   <ng-template #edit>
     <div class="modal-header">
-      <h4 class="modal-title pull-left">Modal</h4>
+      <h4 class="modal-title pull-left">Update</h4>
       <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -66,5 +66,19 @@
           </div>
           <button class="btn btn-primary" type="submit" (click)="onEdit()">Save</button>
       </form>
+    </div>
+  </ng-template>
+
+  <ng-template #delete>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Delete</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>Are you sure you want to delete thisa user?</p>
+      <button (click)="modalRef.hide()" class="btn btn-primary" >No</button>
+      <button (click)="onDelete()" class="btn btn-danger ml-3 ">Yes</button>
     </div>
   </ng-template>

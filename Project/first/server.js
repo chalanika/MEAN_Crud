@@ -47,7 +47,7 @@ app.post("/api/UpdateUser",function(req,res){
     });
 })
 
-app.post("/api/deleteUser",function(req,res){
+app.delete("/api/deleteUser",function(req,res){
     model.remove({_id:req.body.id},function(err){
         if(err){res.send(err);}
         else{req.send({data:"Record has been deleted"});}

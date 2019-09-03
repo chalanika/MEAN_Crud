@@ -16,4 +16,12 @@ export class UserService {
   post(data){
     return this.http.post(this.baseUrl + '/api/Saveuser',data);
   }
+
+  update(data){
+    return this.http.post(this.baseUrl+ '/api/UpdateUser',data);
+  }
+
+  delete(id){
+    return this.http.delete(this.baseUrl+ '/api/deleteUser',id);
+  }
 }
