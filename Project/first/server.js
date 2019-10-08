@@ -3,7 +3,7 @@ var bodyParser = require('body-parser');
 var path = require("path");
 var mongo = require('mongoose');
 
-var db = mongo.connect("mongodb://localhost:27017/MEAN-CRUD",function(err,response){
+var db = mongo.connect("mongodb+srv://de:69pB8401QOeDkzpk@crud-vlmyr.mongodb.net/admin?retryWrites=true&w=majority",function(err,response){
     if(err){console.log(err);}
     else {console.log('connected to '+db,'+',response);}
 });
@@ -40,17 +40,19 @@ app.post("/api/SaveUser",function(req,res){
 
 app.post("/api/UpdateUser",function(req,res){
     var mod = new model(req.body);
-    model.findByIdAndUpdate(req.body._id,{name:req.body.name, address:req.body.address},
+    mod.findByIdAndUpdate(req.body._id,{name:req.body.name, address:req.body.address},
     function(err,data){
         if(err){res.send(err);}
         else{res.send({data:"Record has been updated"});}
     });
-})
+});
 
-app.delete("/api/deleteUser",function(req,res){
-    model.remove({_id:req.body.id},function(err){
+app.delete('/api/deleteUser',function(req,res){
+    var mod = new model(req.body);
+    console.log(mod);
+    mod.remove(req.body._id,function(err){
         if(err){res.send(err);}
-        else{req.send({data:"Record has been deleted"});}
+        else{res.send({data:"Record has been deleted"});}
     });
 })
 
