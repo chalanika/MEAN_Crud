@@ -14,7 +14,7 @@ export class UserListComponent implements OnInit {
   user : User = new User();
   users:any;
   editUser:any;
-  id = { 'id':''};
+  id ={ 'id':''};
   constructor(private modalService: BsModalService, private userService:UserService) {}
 
   ngOnInit() {
@@ -35,12 +35,13 @@ export class UserListComponent implements OnInit {
   }
 
   openModalEdit(template: TemplateRef<any>,user) {
-    this.modalRef = this.modalService.show(template);
     this.editUser = user;
+    this.modalRef = this.modalService.show(template);
   }
 
   openModalDelete(template: TemplateRef<any>,id){
     this.id.id = id;
+    console.log(this.id.id);
     this.modalRef = this.modalService.show(template);
   }
 
@@ -66,9 +67,10 @@ export class UserListComponent implements OnInit {
   } 
   
   onDelete(){
-    this.userService.delete(this.id).subscribe(res=>{
+    this.userService.delete(this.editUser).subscribe(res=>{
       this.getUser();
       this.modalRef.hide();
+      console.log(this.user);
     },error=>{
       console.log(error);
     });

@@ -22,6 +22,7 @@ export class UserService {
   }
 
   delete(id){
+    //console.log(id);
     return this.http.delete(this.baseUrl+ '/api/deleteUser',id);
   }
 }
